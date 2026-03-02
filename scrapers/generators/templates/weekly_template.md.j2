@@ -1,0 +1,160 @@
+---
+title: "短剧漫剧行业周报 {{ week_id }}"
+date: {{ generated_at }}
+draft: false
+tags: ["周报", "短剧", "漫剧"]
+categories: ["周报"]
+summary: "{{ week_id }} 行业情报周报 — 采集 {{ total_count }} 条信息，覆盖微信公众号、播客、B站等平台。"
+---
+
+> 本周报由自动化采集系统生成，数据采集时间：{{ generated_at[:10] }}
+>
+> 共采集 **{{ total_count }}** 条信息（微信 {{ weixin_count }}、播客 {{ podcast_count }}、B站 {{ bili_count }}）
+
+---
+
+## 一、行业动态摘要
+
+{% if top_items %}
+本周热度最高的行业动态：
+
+{% for item in top_items[:5] %}
+{{ loop.index }}. **{{ item.title }}**（{{ item.author }}）— 相关性评分 {{ item.extra.score }}
+   > {{ item.summary[:100] }}{% if item.summary|length > 100 %}...{% endif %}
+
+{% endfor %}
+{% else %}
+本周暂无采集到的行业动态。
+{% endif %}
+
+---
+
+## 二、微信公众号热文 TOP 10
+
+{% if weixin_items %}
+| # | 标题 | 来源 | 评分 |
+|---|------|------|------|
+{% for item in weixin_items[:10] %}
+| {{ loop.index }} | [{{ item.title[:40] }}{% if item.title|length > 40 %}...{% endif %}]({{ item.url }}) | {{ item.author }} | {{ item.extra.score }} |
+{% endfor %}
+
+{% for item in weixin_items[:10] %}
+### {{ loop.index }}. {{ item.title }}
+
+- **来源**：{{ item.author }}
+- **发布时间**：{{ item.published_at[:10] if item.published_at else "未知" }}
+- **摘要**：{{ item.summary[:200] if item.summary else "暂无摘要" }}
+- [阅读原文]({{ item.url }})
+
+{% endfor %}
+{% else %}
+本周微信端暂无采集到新文章。
+{% endif %}
+
+---
+
+## 三、播客动态
+
+{% if podcast_items %}
+| 节目 | 单集 | 时长 |
+|------|------|------|
+{% for item in podcast_items[:10] %}
+| {{ item.extra.podcast_name if item.extra.podcast_name else item.author }} | [{{ item.title[:50] }}{% if item.title|length > 50 %}...{% endif %}]({{ item.url }}) | {{ item.extra.duration_min if item.extra.duration_min else "-" }} 分钟 |
+{% endfor %}
+
+{% for item in podcast_items[:5] %}
+### {{ item.title }}
+
+- **节目**：{{ item.extra.podcast_name if item.extra.podcast_name else item.author }}
+- **时长**：{{ item.extra.duration_min if item.extra.duration_min else "未知" }} 分钟
+- **简介**：{{ item.summary[:200] if item.summary else "暂无简介" }}
+- [收听]({{ item.url }})
+
+{% endfor %}
+{% else %}
+本周暂无采集到新播客单集。
+{% endif %}
+
+---
+
+## 四、B站热门视频
+
+{% if bili_items %}
+| UP主 | 标题 | 播放量 |
+|------|------|--------|
+{% for item in bili_items[:10] %}
+| {{ item.author }} | [{{ item.title[:40] }}{% if item.title|length > 40 %}...{% endif %}]({{ item.url }}) | {{ item.extra.play if item.extra.play else "-" }} |
+{% endfor %}
+
+{% for item in bili_items[:5] %}
+### {{ item.title }}
+
+- **UP主**：{{ item.author }}
+- **播放量**：{{ item.extra.play if item.extra.play else "未知" }}
+- **简介**：{{ item.summary[:200] if item.summary else "暂无简介" }}
+- [观看]({{ item.url }})
+
+{% endfor %}
+{% else %}
+本周B站端暂无采集到新视频。
+{% endif %}
+
+---
+
+## 五、涉及的公司与平台
+
+{% if entities %}
+{% if entities.companies %}
+**公司**：{{ entities.companies | join("、") }}
+{% endif %}
+{% if entities.platforms %}
+
+**平台**：{{ entities.platforms | join("、") }}
+{% endif %}
+{% if entities.persons %}
+
+**人物**：{{ entities.persons | join("、") }}
+{% endif %}
+{% else %}
+本周暂未识别到特定实体。
+{% endif %}
+
+---
+
+## 六、AI漫剧板块
+
+{% if ai_items %}
+{% for item in ai_items[:5] %}
+- **{{ item.title }}**（{{ item.author }}）{% if item.summary %} — {{ item.summary[:80] }}{% endif %}
+{% endfor %}
+{% else %}
+本周暂无专门的AI漫剧相关内容。
+{% endif %}
+
+---
+
+## 七、出海板块
+
+{% if overseas_items %}
+{% for item in overseas_items[:5] %}
+- **{{ item.title }}**（{{ item.author }}）{% if item.summary %} — {{ item.summary[:80] }}{% endif %}
+{% endfor %}
+{% else %}
+本周暂无专门的出海相关内容。
+{% endif %}
+
+---
+
+## 八、手动补充
+
+{% if manual_notes %}
+{% for note in manual_notes %}
+- {{ note }}
+{% endfor %}
+{% else %}
+本周无手动补充内容。如需补充，请编辑 `data/manual_notes/{{ week_id }}.yaml`。
+{% endif %}
+
+---
+
+*本周报由 [短剧漫剧行业情报站](/) 自动生成*

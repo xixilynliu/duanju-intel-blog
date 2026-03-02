@@ -1,0 +1,75 @@
+baseURL = "https://xixilynliu.github.io/duanju-intel-blog/"
+languageCode = "zh-cn"
+defaultContentLanguage = "zh"
+title = "短剧漫剧行业情报站"
+theme = "PaperMod"
+paginate = 15
+
+[params]
+  env = "production"
+  description = "短剧与漫剧行业深度情报，每周更新"
+  author = "情报站编辑部"
+  defaultTheme = "auto"
+  ShowReadingTime = true
+  ShowShareButtons = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowToc = true
+
+  [params.homeInfoParams]
+    Title = "短剧漫剧行业情报站"
+    Content = "跟踪短剧、漫剧、AI漫剧行业动态，汇聚微信公众号、播客、B站等多平台情报，每周自动生成行业周报。"
+
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/"
+
+[params.fuseOpts]
+  isCaseSensitive = false
+  shouldSort = true
+  location = 0
+  distance = 1000
+  threshold = 0.4
+  minMatchCharLength = 0
+  keys = ["title", "permalink", "summary", "content"]
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[[menu.main]]
+  identifier = "weekly"
+  name = "周报"
+  url = "/weekly/"
+  weight = 10
+
+[[menu.main]]
+  identifier = "topics"
+  name = "专题"
+  url = "/topics/"
+  weight = 20
+
+[[menu.main]]
+  identifier = "sources"
+  name = "信息源"
+  url = "/sources/"
+  weight = 30
+
+[[menu.main]]
+  identifier = "about"
+  name = "关于"
+  url = "/about/"
+  weight = 40
+
+[[menu.main]]
+  identifier = "search"
+  name = "搜索"
+  url = "/search/"
+  weight = 50
+
+[markup]
+  [markup.highlight]
+    noClasses = false
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

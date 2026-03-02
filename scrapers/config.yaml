@@ -1,0 +1,63 @@
+# 短剧漫剧行业情报站 — 采集配置
+
+# 搜索关键词（按优先级排列）
+keywords:
+  core:
+    - "短剧"
+    - "漫剧"
+    - "AI漫剧"
+    - "短剧出海"
+    - "ReelShort"
+  extended:
+    - "短剧行业"
+    - "短剧投放"
+    - "短剧制作"
+    - "AIGC短剧"
+    - "竖屏短剧"
+    - "微短剧"
+    - "互动短剧"
+    - "短剧平台"
+  companies:
+    - "中文在线 短剧"
+    - "点众科技"
+    - "九州文化 短剧"
+    - "容量文化"
+    - "花生短剧"
+    - "红果短剧"
+
+# 已知高质量KOL账号（用于评分加权）
+kol_accounts:
+  - "DataEye短剧观察"
+  - "新腕儿"
+  - "短剧自习室"
+  - "娱乐资本论"
+  - "骨朵网络影视"
+  - "毒眸"
+  - "白鲸出海"
+  - "TopKlout克劳锐"
+  - "预言家游报"
+  - "刺猬公社"
+  - "Tech星球"
+  - "Latepost"
+
+# 采集频率控制（秒）
+rate_limits:
+  sogou_weixin:
+    keyword_interval: 15
+    page_interval: 8
+    captcha_backoff: 60
+    max_pages_per_keyword: 3
+  apple_podcasts:
+    request_interval: 2
+    max_results_per_keyword: 20
+  bilibili:
+    request_interval: 3
+    max_pages_per_keyword: 1
+
+# 输出路径
+paths:
+  raw_data: "data/raw"
+  processed_data: "data/processed"
+  fingerprint_db: "data/processed/fingerprints.json"
+  hugo_content: "../hugo-site/content"
+  hugo_data: "../hugo-site/data"
