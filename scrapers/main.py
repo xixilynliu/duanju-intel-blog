@@ -21,9 +21,11 @@ import yaml
 from sources.sogou_weixin import SogouWeixinScraper
 from sources.apple_podcasts import ApplePodcastsScraper
 from sources.bilibili import BilibiliScraper
+from sources.appstore import AppStoreScraper, get_app_metrics
 from processors.deduplicator import Deduplicator
 from processors.scorer import Scorer
 from processors.entity_extractor import EntityExtractor
+from processors.metrics_tracker import MetricsTracker
 from generators.weekly_report import WeeklyReportGenerator
 
 # 配置日志
@@ -68,7 +70,6 @@ def run_scrapers(config: dict) -> list:
     logger.info("=" * 50)
     logger.info("开始采集：Apple Podcasts")
     podcasts = ApplePodcastsScraper(config)
-    # 播客搜索用核心关键词即可
     podcast_keywords = config.get("keywords", {}).get("core", all_keywords[:5])
     items = podcasts.scrape(podcast_keywords)
     all_items.extend(items)
@@ -77,9 +78,15 @@ def run_scrapers(config: dict) -> list:
     logger.info("=" * 50)
     logger.info("开始采集：B站")
     bili = BilibiliScraper(config)
-    # B站频率限制严格，只用核心关键词
     bili_keywords = config.get("keywords", {}).get("core", all_keywords[:3])
     items = bili.scrape(bili_keywords)
+    all_items.extend(items)
+
+    # App Store 指标
+    logger.info("=" * 50)
+    logger.info("开始采集：App Store")
+    appstore = AppStoreScraper(config)
+    items = appstore.scrape()
     all_items.extend(items)
 
     logger.info("=" * 50)
@@ -93,20 +100,23 @@ def process_items(config: dict, items: list) -> list:
         "fingerprint_db", "data/processed/fingerprints.json"
     )
 
-    # 去重
+    # 去重（仅对内容类 item）
+    content_items = [i for i in items if i.source != "appstore"]
+    app_items = [i for i in items if i.source == "appstore"]
+
     dedup = Deduplicator(fingerprint_path)
-    items = dedup.deduplicate(items)
+    content_items = dedup.deduplicate(content_items)
 
     # 评分
     kol_accounts = config.get("kol_accounts", [])
     scorer = Scorer(kol_accounts)
-    items = scorer.score(items)
+    content_items = scorer.score(content_items)
 
     # 实体标记
     extractor = EntityExtractor()
-    items = extractor.tag_items(items)
+    content_items = extractor.tag_items(content_items)
 
-    return items
+    return content_items + app_items
 
 
 def save_raw_data(items: list, week_id: str, raw_dir: str):
@@ -147,6 +157,7 @@ def main():
     processed_dir = config.get("paths", {}).get("processed_data", "data/processed")
     hugo_content = config.get("paths", {}).get("hugo_content", "../hugo-site/content")
     hugo_data = config.get("paths", {}).get("hugo_data", "../hugo-site/data")
+    metrics_path = os.path.join(processed_dir, "metrics_history.json")
 
     if args.generate_only:
         # 从已有处理后数据生成周报
@@ -156,7 +167,6 @@ def main():
             sys.exit(1)
         with open(processed_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
-        # 重建 ScrapedItem 对象
         from sources.base import ScrapedItem
         items = []
         for d in data:
@@ -173,6 +183,27 @@ def main():
         if args.scrape_only:
             logger.info("仅采集模式，跳过周报生成")
             return
+
+    # 指标追踪
+    logger.info("=" * 50)
+    logger.info("更新指标追踪")
+    tracker = MetricsTracker(metrics_path)
+
+    app_items = [i for i in items if i.source == "appstore"]
+    content_items = [i for i in items if i.source != "appstore"]
+    app_metrics = [i.extra for i in app_items]
+
+    article_counts = {
+        "微信公众号": len([i for i in content_items if i.source == "sogou_weixin"]),
+        "播客": len([i for i in content_items if i.source == "apple_podcasts"]),
+        "B站": len([i for i in content_items if i.source == "bilibili"]),
+    }
+    tracker.record_snapshot(week_id, app_metrics, article_counts)
+
+    comparison = tracker.get_comparison(week_id)
+    signals = tracker.generate_signals(comparison)
+
+    logger.info(f"生成 {len(signals)} 条信号判断")
 
     # 生成周报
     logger.info("=" * 50)
@@ -191,10 +222,14 @@ def main():
         template_dir="generators/templates",
         output_dir=os.path.join(hugo_content, "weekly"),
     )
-    output_path = generator.generate(items, week_id, manual_notes)
+    output_path = generator.generate(
+        items, week_id, manual_notes,
+        comparison=comparison,
+        signals=signals,
+        app_count=len(app_items),
+    )
     logger.info(f"周报已生成: {output_path}")
 
-    # 验证Hugo构建
     logger.info("=" * 50)
     logger.info("完成！请运行 'cd ../hugo-site && hugo server -D' 预览")
 
