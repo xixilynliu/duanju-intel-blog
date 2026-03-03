@@ -14,6 +14,7 @@ from jinja2 import Environment, FileSystemLoader
 
 from sources.base import ScrapedItem
 from processors.entity_extractor import EntityExtractor
+from processors.analysis_engine import AnalysisEngine
 
 logger = logging.getLogger(__name__)
 
@@ -30,7 +31,8 @@ class WeeklyReportGenerator:
     def generate(self, items: List[ScrapedItem], week_id: str,
                  manual_notes: dict = None,
                  comparison: dict = None, signals: list = None,
-                 app_count: int = 0) -> str:
+                 app_count: int = 0,
+                 app_metrics: dict = None) -> str:
         """生成周报Markdown文件"""
         # 过滤掉 appstore 类型的 item（它们的数据走 comparison 通道）
         content_items = [i for i in items if i.source != "appstore"]
@@ -77,6 +79,17 @@ class WeeklyReportGenerator:
             comparison = {"has_data": False}
         if signals is None:
             signals = []
+        if app_metrics is None:
+            app_metrics = {}
+
+        # 核心分析引擎
+        engine = AnalysisEngine()
+        analysis = engine.generate_core_analysis(
+            content_items=content_items,
+            app_metrics=app_metrics,
+            comparison=comparison,
+            signals=signals,
+        )
 
         # 渲染模板
         template = self.env.get_template("weekly_template.md.j2")
@@ -98,6 +111,7 @@ class WeeklyReportGenerator:
             manual_notes=notes_list,
             comparison=comparison,
             signals=signals,
+            analysis=analysis,
         )
 
         # 写入文件

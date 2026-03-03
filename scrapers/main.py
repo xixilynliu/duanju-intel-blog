@@ -230,6 +230,7 @@ def main():
         comparison=comparison,
         signals=signals,
         app_count=len(app_items),
+        app_metrics=tracker.history[-1].get("apps", {}) if tracker.history else {},
     )
     logger.info(f"周报已生成: {output_path}")
 

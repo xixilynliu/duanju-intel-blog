@@ -15,12 +15,44 @@ summary: "{{ week_id }} 行业情报周报 — 采集 {{ total_count }} 条信�
 
 ## 本周核心判断
 
-{% if signals %}
-{% for signal in signals %}
+{% if analysis.summary %}
+> {{ analysis.summary }}
+{% endif %}
+
+{% if analysis.data_signals %}
+### 量化信号
+{% for signal in analysis.data_signals %}
 - {% if signal.level == "positive" %}🟢{% elif signal.level == "negative" %}🔴{% else %}🟡{% endif %} **{{ signal.category }}**：{{ signal.text }}
 {% endfor %}
-{% else %}
-本周各维度数据波动不大，无明显异常信号。
+{% endif %}
+
+{% if analysis.content_signals %}
+### 趋势观察
+{% for signal in analysis.content_signals %}
+- {{ signal.icon }} **{{ signal.category }}**：{{ signal.text }}
+{% endfor %}
+{% endif %}
+
+{% if analysis.hot_topics %}
+### 话题热度分布
+
+| 话题 | 相关文章数 | 占比 | 代表性文章 |
+|------|-----------|------|-----------|
+{% for topic in analysis.hot_topics %}
+| {{ topic.icon }} {{ topic.name }} | {{ topic.count }} | {{ topic.pct }}% | {{ topic.top_title[:30] }}{% if topic.top_title|length > 30 %}...{% endif %}（{{ topic.top_source }}） |
+{% endfor %}
+{% endif %}
+
+{% if analysis.market_landscape.overview %}
+### 市场格局
+
+{{ analysis.market_landscape.overview }}
+{% endif %}
+
+{% if analysis.key_insight %}
+### 投资视角
+
+{{ analysis.key_insight }}
 {% endif %}
 
 ---
