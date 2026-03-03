@@ -1,0 +1,92 @@
+[
+  {
+    "week_id": "2026-W07",
+    "recorded_at": "2026-02-15T18:00:00",
+    "apps": {
+      "ReelShort": {
+        "rating": 4.6,
+        "review_count": 320000,
+        "chart_rank": 7,
+        "country": "us"
+      },
+      "DramaBox": {
+        "rating": 4.74,
+        "review_count": 670000,
+        "chart_rank": 15,
+        "country": "us"
+      },
+      "红果短剧": {
+        "rating": 4.72,
+        "review_count": 2850000,
+        "chart_rank": 8,
+        "country": "cn"
+      }
+    },
+    "article_counts": {
+      "微信公众号": 40,
+      "播客": 6,
+      "B站": 2
+    }
+  },
+  {
+    "week_id": "2026-W08",
+    "recorded_at": "2026-02-22T18:00:00",
+    "apps": {
+      "ReelShort": {
+        "rating": 4.63,
+        "review_count": 340000,
+        "chart_rank": 5,
+        "country": "us"
+      },
+      "DramaBox": {
+        "rating": 4.75,
+        "review_count": 690000,
+        "chart_rank": 12,
+        "country": "us"
+      },
+      "红果短剧": {
+        "rating": 4.73,
+        "review_count": 2950000,
+        "chart_rank": 6,
+        "country": "cn"
+      }
+    },
+    "article_counts": {
+      "微信公众号": 45,
+      "播客": 8,
+      "B站": 3
+    }
+  },
+  {
+    "week_id": "2026-W09",
+    "recorded_at": "2026-03-02T19:28:50.370730",
+    "apps": {
+      "ReelShort": {
+        "rating": 4.65,
+        "review_count": 354085,
+        "chart_rank": 3,
+        "version": "",
+        "country": "us"
+      },
+      "DramaBox": {
+        "rating": 4.77,
+        "review_count": 704918,
+        "chart_rank": 8,
+        "version": "",
+        "country": "us"
+      },
+      "红果短剧": {
+        "rating": 4.74,
+        "review_count": 3016218,
+        "chart_rank": 5,
+        "version": "",
+        "country": "cn"
+      }
+    },
+    "article_counts": {
+      "微信公众号": 4,
+      "播客": 1,
+      "B站": 1
+    }
+  }
+]

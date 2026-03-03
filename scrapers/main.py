@@ -26,7 +26,10 @@ from processors.deduplicator import Deduplicator
 from processors.scorer import Scorer
 from processors.entity_extractor import EntityExtractor
 from processors.metrics_tracker import MetricsTracker
+from processors.company_profiles import CompanyProfileManager
 from generators.weekly_report import WeeklyReportGenerator
+from generators.dashboard import DashboardGenerator
+from generators.investment_memo import InvestmentMemoGenerator
 
 # 配置日志
 logging.basicConfig(
@@ -229,6 +232,38 @@ def main():
         app_count=len(app_items),
     )
     logger.info(f"周报已生成: {output_path}")
+
+    # 公司档案更新
+    logger.info("=" * 50)
+    logger.info("更新公司档案")
+    company_data_path = os.path.join(hugo_data, "company_timelines.json")
+    company_content_dir = os.path.join(hugo_content, "companies")
+    company_mgr = CompanyProfileManager(company_data_path, company_content_dir)
+    company_mgr.update_from_items(content_items, week_id)
+    company_mgr.update_app_metrics(app_items, week_id)
+    company_mgr.generate_pages()
+
+    # 仪表盘图表生成
+    logger.info("=" * 50)
+    logger.info("生成仪表盘图表")
+    hugo_static = os.path.join(hugo_content, "..", "static")
+    dashboard = DashboardGenerator(metrics_path, hugo_static, hugo_content)
+    dashboard.generate()
+
+    # 投资备忘录
+    logger.info("=" * 50)
+    logger.info("检查投资备忘录触发条件")
+    memo_gen = InvestmentMemoGenerator(
+        metrics_path=metrics_path,
+        company_timelines_path=company_data_path,
+        output_dir=os.path.join(hugo_content, "memos"),
+    )
+    memo_triggers = memo_gen.check_triggers(week_id)
+    if memo_triggers:
+        memo_path = memo_gen.generate_memo(week_id, memo_triggers)
+        logger.info(f"投资备忘录已生成: {memo_path}")
+    else:
+        logger.info("本周无触发条件，未生成备忘录")
 
     logger.info("=" * 50)
     logger.info("完成！请运行 'cd ../hugo-site && hugo server -D' 预览")

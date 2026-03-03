@@ -44,22 +44,28 @@ paginate = 15
   weight = 10
 
 [[menu.main]]
-  identifier = "topics"
-  name = "专题"
-  url = "/topics/"
+  identifier = "dashboard"
+  name = "仪表盘"
+  url = "/dashboard/"
+  weight = 15
+
+[[menu.main]]
+  identifier = "companies"
+  name = "公司"
+  url = "/companies/"
   weight = 20
+
+[[menu.main]]
+  identifier = "memos"
+  name = "备忘录"
+  url = "/memos/"
+  weight = 25
 
 [[menu.main]]
   identifier = "sources"
   name = "信息源"
   url = "/sources/"
   weight = 30
-
-[[menu.main]]
-  identifier = "about"
-  name = "关于"
-  url = "/about/"
-  weight = 40
 
 [[menu.main]]
   identifier = "search"

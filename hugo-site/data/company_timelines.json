@@ -1,0 +1,117 @@
+{
+  "ReelShort": [
+    {
+      "week_id": "2026-W09",
+      "date": "2026-W09",
+      "title": "ReelShort连续3月登顶北美，DramaBox紧追",
+      "source": "新腕儿",
+      "platform": "sogou_weixin",
+      "url": "https://example.com/2",
+      "summary": "ReelShort连续3个月位居北美短剧APP下载量第一",
+      "score": 40
+    },
+    {
+      "week_id": "2026-W09",
+      "date": "2026-W09",
+      "title": "[数据] ReelShort 评分 4.65, 评论 354,085",
+      "source": "App Store",
+      "platform": "appstore",
+      "url": "",
+      "summary": "",
+      "score": 0,
+      "metrics": {
+        "rating": 4.65,
+        "review_count": 354085,
+        "chart_rank": 3
+      }
+    }
+  ],
+  "DramaBox": [
+    {
+      "week_id": "2026-W09",
+      "date": "2026-W09",
+      "title": "ReelShort连续3月登顶北美，DramaBox紧追",
+      "source": "新腕儿",
+      "platform": "sogou_weixin",
+      "url": "https://example.com/2",
+      "summary": "ReelShort连续3个月位居北美短剧APP下载量第一",
+      "score": 40
+    },
+    {
+      "week_id": "2026-W09",
+      "date": "2026-W09",
+      "title": "[数据] DramaBox 评分 4.77, 评论 704,918",
+      "source": "App Store",
+      "platform": "appstore",
+      "url": "",
+      "summary": "",
+      "score": 0,
+      "metrics": {
+        "rating": 4.77,
+        "review_count": 704918,
+        "chart_rank": 8
+      }
+    }
+  ],
+  "中文在线": [
+    {
+      "week_id": "2026-W09",
+      "date": "2026-W09",
+      "title": "AI漫剧日收入暴涨900%",
+      "source": "DataEye短剧观察",
+      "platform": "sogou_weixin",
+      "url": "https://example.com/1",
+      "summary": "2025年Q3 AI漫剧赛道日均收入较2024年Q4增长超900%，中文在线和点众科技布局加速",
+      "score": 61
+    },
+    {
+      "week_id": "2026-W09",
+      "date": "2026-W09",
+      "title": "中文在线Q4短剧营收同比增120%",
+      "source": "娱乐资本论",
+      "platform": "sogou_weixin",
+      "url": "https://example.com/4",
+      "summary": "中文在线发布Q4财报，短剧业务营收同比增长120%",
+      "score": 44
+    }
+  ],
+  "点众科技": [
+    {
+      "week_id": "2026-W09",
+      "date": "2026-W09",
+      "title": "AI漫剧日收入暴涨900%",
+      "source": "DataEye短剧观察",
+      "platform": "sogou_weixin",
+      "url": "https://example.com/1",
+      "summary": "2025年Q3 AI漫剧赛道日均收入较2024年Q4增长超900%，中文在线和点众科技布局加速",
+      "score": 61
+    }
+  ],
+  "红果短剧": [
+    {
+      "week_id": "2026-W09",
+      "date": "2026-W09",
+      "title": "红果短剧DAU突破8000万大关",
+      "source": "短剧自习室",
+      "platform": "sogou_weixin",
+      "url": "https://example.com/3",
+      "summary": "字节跳动旗下红果短剧日活跃用户突破8000万",
+      "score": 34
+    },
+    {
+      "week_id": "2026-W09",
+      "date": "2026-W09",
+      "title": "[数据] 红果短剧 评分 4.74, 评论 3,016,218",
+      "source": "App Store",
+      "platform": "appstore",
+      "url": "",
+      "summary": "",
+      "score": 0,
+      "metrics": {
+        "rating": 4.74,
+        "review_count": 3016218,
+        "chart_rank": 5
+      }
+    }
+  ]
+}
