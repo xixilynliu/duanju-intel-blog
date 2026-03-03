@@ -88,5 +88,58 @@
       "播客": 1,
       "B站": 1
     }
+  },
+  {
+    "week_id": "2026-W10",
+    "recorded_at": "2026-03-03T12:15:25.004142",
+    "apps": {
+      "ReelShort": {
+        "rating": 4.65,
+        "review_count": 354085,
+        "chart_rank": 42,
+        "version": "3.6.00",
+        "country": "us"
+      },
+      "DramaBox": {
+        "rating": 4.77,
+        "review_count": 704918,
+        "chart_rank": 39,
+        "version": "5.4.0",
+        "country": "us"
+      },
+      "ShortMax": {
+        "rating": 4.65,
+        "review_count": 128146,
+        "chart_rank": null,
+        "version": "2.16.3",
+        "country": "us"
+      },
+      "GoodShort": {
+        "rating": 4.9,
+        "review_count": 440348,
+        "chart_rank": null,
+        "version": "2.4.7",
+        "country": "us"
+      },
+      "红果短剧": {
+        "rating": 4.74,
+        "review_count": 3016218,
+        "chart_rank": 5,
+        "version": "7.0.9",
+        "country": "cn"
+      },
+      "河马剧场": {
+        "rating": 4.71,
+        "review_count": 681732,
+        "chart_rank": null,
+        "version": "2.21.1",
+        "country": "cn"
+      }
+    },
+    "article_counts": {
+      "微信公众号": 535,
+      "播客": 51,
+      "B站": 40
+    }
   }
 ]

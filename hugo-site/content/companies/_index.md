@@ -11,34 +11,34 @@ description: "短剧漫剧行业重点公司动态追踪"
 
 | 公司 | 简介 | 累计事件 |
 |------|------|----------|
-| [ReelShort](/companies/reelshort/) | 北美最大短剧平台，Crazy Maple Studio旗下 | 2 |
-| [DramaBox](/companies/dramabox/) | 出海短剧平台，下载量增长迅速 | 2 |
-| [ShortMax](/companies/shortmax/) | 出海短剧平台 | 0 |
-| [GoodShort](/companies/goodshort/) | 出海短剧平台，评分最高 | 0 |
+| [ReelShort](/companies/reelshort/) | 北美最大短剧平台，Crazy Maple Studio旗下 | 47 |
+| [DramaBox](/companies/dramabox/) | 出海短剧平台，下载量增长迅速 | 5 |
+| [ShortMax](/companies/shortmax/) | 出海短剧平台 | 1 |
+| [GoodShort](/companies/goodshort/) | 出海短剧平台，评分最高 | 3 |
 
 ### 上市公司
 
 | 公司 | 简介 | 累计事件 |
 |------|------|----------|
-| [中文在线](/companies/中文在线/) | A股上市（300364），短剧业务重要布局者 | 2 |
+| [中文在线](/companies/中文在线/) | A股上市（300364），短剧业务重要布局者 | 47 |
 
 ### 行业龙头
 
 | 公司 | 简介 | 累计事件 |
 |------|------|----------|
-| [点众科技](/companies/点众科技/) | 短剧行业头部公司 | 1 |
+| [点众科技](/companies/点众科技/) | 短剧行业头部公司 | 35 |
 
 ### 头部公司
 
 | 公司 | 简介 | 累计事件 |
 |------|------|----------|
-| [九州文化](/companies/九州文化/) | 短剧制作发行头部公司 | 0 |
+| [九州文化](/companies/九州文化/) | 短剧制作发行头部公司 | 35 |
 | [容量文化](/companies/容量文化/) | 短剧制作公司 | 0 |
 
 ### 国内平台
 
 | 公司 | 简介 | 累计事件 |
 |------|------|----------|
-| [红果短剧](/companies/红果短剧/) | 字节跳动旗下，国内DAU最高的短剧平台 | 2 |
-| [花生短剧](/companies/花生短剧/) | 点众科技旗下短剧平台 | 0 |
+| [红果短剧](/companies/红果短剧/) | 字节跳动旗下，国内DAU最高的短剧平台 | 46 |
+| [花生短剧](/companies/花生短剧/) | 点众科技旗下短剧平台 | 26 |
 
