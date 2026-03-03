@@ -14,22 +14,7 @@
 <line x1="70" y1="40.0" x2="770" y2="40.0" stroke="#333355" stroke-width="1"/>
 <text x="62" y="44.0" text-anchor="end" fill="#cdd6f4" font-size="11">775K</text>
 <text x="15" y="140.0" text-anchor="middle" fill="#cdd6f4" font-size="11" transform="rotate(-90, 15, 140.0)">评论数</text>
-<path d="M 70.0,71.9 L 303.3,65.9 L 536.7,61.4 L 770.0,61.4" fill="none" stroke="#3b82f6" stroke-width="2.5"/>
-<circle cx="70.0" cy="71.9" r="3.5" fill="#3b82f6"/>
-<circle cx="303.3" cy="65.9" r="3.5" fill="#3b82f6"/>
-<circle cx="536.7" cy="61.4" r="3.5" fill="#3b82f6"/>
-<circle cx="770.0" cy="61.4" r="3.5" fill="#3b82f6"/>
-<text x="775.0" y="53.35861437065657" fill="#3b82f6" font-size="10">705K</text>
-<path d="M 70.0,178.0 L 303.3,171.9 L 536.7,167.7 L 770.0,167.7" fill="none" stroke="#10b981" stroke-width="2.5"/>
-<circle cx="70.0" cy="178.0" r="3.5" fill="#10b981"/>
-<circle cx="303.3" cy="171.9" r="3.5" fill="#10b981"/>
-<circle cx="536.7" cy="167.7" r="3.5" fill="#10b981"/>
-<circle cx="770.0" cy="167.7" r="3.5" fill="#10b981"/>
-<text x="775.0" y="159.6590174742879" fill="#10b981" font-size="10">354K</text>
-<text x="70.0" y="258" text-anchor="middle" fill="#cdd6f4" font-size="10">W07</text>
-<text x="303.3333333333333" y="258" text-anchor="middle" fill="#cdd6f4" font-size="10">W08</text>
-<text x="536.6666666666666" y="258" text-anchor="middle" fill="#cdd6f4" font-size="10">W09</text>
-<text x="770.0" y="258" text-anchor="middle" fill="#cdd6f4" font-size="10">W10</text>
+<text x="70.0" y="258" text-anchor="middle" fill="#cdd6f4" font-size="10">W10</text>
 <rect x="70" y="280" width="12" height="12" rx="2" fill="#3b82f6"/>
 <text x="86" y="290" fill="#cdd6f4" font-size="10">DramaBox</text>
 <rect x="180" y="280" width="12" height="12" rx="2" fill="#ef4444"/>

@@ -40,15 +40,58 @@ jobs:
             python3 main.py
           fi
 
-      - name: Commit generated report
+      - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add hugo-site/content/weekly/ scrapers/data/
+          git add hugo-site/ scrapers/data/
           if git diff --cached --quiet; then
+            echo "NO_CHANGES=true" >> $GITHUB_ENV
             echo "No changes to commit"
           else
             WEEK_ID=$(date +%G-W%V)
+            echo "WEEK_ID=${WEEK_ID}" >> $GITHUB_ENV
             git commit -m "auto: 生成 ${WEEK_ID} 周报"
             git push
+            echo "NO_CHANGES=false" >> $GITHUB_ENV
           fi
+
+      - name: 发送成功通知
+        if: env.NO_CHANGES != 'true'
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: "✅ 短剧周报 ${{ env.WEEK_ID }} 已发布"
+          to: ${{ secrets.NOTIFY_EMAIL }}
+          from: "情报站Bot <${{ secrets.MAIL_USERNAME }}>"
+          body: |
+            短剧漫剧行业情报站 ${{ env.WEEK_ID }} 周报已自动生成并发布。
+
+            查看周报：https://xixilynliu.github.io/duanju-intel-blog/weekly/
+            查看仪表盘：https://xixilynliu.github.io/duanju-intel-blog/dashboard/
+            查看公司档案：https://xixilynliu.github.io/duanju-intel-blog/companies/
+
+            GitHub Actions: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        continue-on-error: true
+
+      - name: 发送失败通知
+        if: failure()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: "❌ 短剧周报生成失败"
+          to: ${{ secrets.NOTIFY_EMAIL }}
+          from: "情报站Bot <${{ secrets.MAIL_USERNAME }}>"
+          body: |
+            短剧漫剧行业情报站周报生成失败，请检查。
+
+            GitHub Actions: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        continue-on-error: true
